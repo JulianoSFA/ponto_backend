@@ -75,8 +75,17 @@ WSGI_APPLICATION = 'ponto_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': DB_ENGINE,
+        'NAME': environ.get('DB_NAME', 'database'),
+        'USER': environ.get('DB_USER', 'root'),
+        'HOST': environ.get('DB_HOST', '0.0.0.0'),
+        'PASSWORD': environ.get('DB_PASSWORD', ''),
+        'PORT': environ.get('DB_PORT', 3306),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+            'init_command': 'SET default_storage_engine=INNODB;'
+        },
     }
 }
 
