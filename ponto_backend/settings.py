@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9##t7p2ee)2yt@q=5&-cj#x7_6fj2&nc4i!2(u!yn+0+g)#e%$'
+SECRET_KEY = environ.get('SECRET_KEY', '"__CHANGE_ME__"')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = environ.get('DEBUG') == 'true' if environ.get('DEBUG') else False
 
 ALLOWED_HOSTS = []
 
@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': DB_ENGINE,
         'NAME': environ.get('DB_NAME', 'database'),
         'USER': environ.get('DB_USER', 'root'),
-        'HOST': environ.get('DB_HOST', '0.0.0.0'),
+        'HOST': environ.get('DB_HOST', '127.0.0.1'),
         'PASSWORD': environ.get('DB_PASSWORD', ''),
         'PORT': environ.get('DB_PORT', 3306),
         'OPTIONS': {
