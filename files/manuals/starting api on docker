@@ -1,0 +1,9 @@
+* Fazer o download e instalação do docker desktop (windows, mac) (Tutorial: https://docs.docker.com/desktop/windows/install/)
+* Manter o docker desktop e o mysql abertos (Pode ser o ampps ou qualquer variante)
+* Abrir um terminal de comando
+* No terminal, va até a pasta do projeto (no windows é algo como cd ***/***/ponto_bakcend)
+* Rode o comando: docker-compose up
+* Para subir o docker instalando/atualizando as dependecias, use: docker-compose up --build (Rodar na primeira vez e sempre que adicionar/remover bibliotecas)
+
+* Caso esteja usando pycharm (qualquer versão menos a community) pode configurar um debugger, tutorial aqui:
+https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#configuring-docker
