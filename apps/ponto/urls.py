@@ -8,10 +8,9 @@ router = DefaultRouter()
 router.register('work-time', WorkTimeViewSet)
 
 relationshipPatterns = [
-    # Consultation
     url(
         regex=r'^work-time/(?P<pk>[^/.]+)/relationships/(?P<related_field>[^/.]+)/$',
-        view=WorkTimeViewSet.as_view(),
+        view=WorkTimeViewSet.as_view({'get': 'retrieve_related'}),
         name='work-time-relationships'
         ),
     url(r'^work-time/(?P<pk>[^/.]+)/(?P<related_field>\w+)/$',

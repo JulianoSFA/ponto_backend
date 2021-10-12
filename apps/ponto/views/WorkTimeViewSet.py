@@ -11,9 +11,7 @@ class WorkTimeFilter(FilterSet):
         model = WorkTime
         fields = {
             'id': ['in', 'exact'],
-            'result': ['contains', 'icontains', 'exact'],
-            'order__id': ['contains', 'icontains', 'exact'],
-            'score': ['contains', 'icontains', 'exact'],
+            'day': ['contains', 'icontains', 'exact'],
         }
 
 
@@ -23,7 +21,7 @@ class WorkTimeViewSet(ModelViewSet):
     ordering_fields = '__all__'
     filter_class = WorkTimeFilter
     search_fields = {'id', 'day', 'last_time_block__id', 'next_time_block__id'}
-    permission_classes = [AllowAny]
+    permission = [AllowAny]
 
 
 class WorkTimeRelationshipView(RelationshipView):

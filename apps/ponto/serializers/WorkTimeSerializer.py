@@ -28,3 +28,7 @@ class WorkTimeSerializer(serializers.ModelSerializer):
         self_link_view_name='work-time-relationships',
         related_link_view_name='work-time-related',
     )
+
+    class Meta:
+        model = WorkTime
+        fields = '__all__'
