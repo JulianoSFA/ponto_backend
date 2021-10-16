@@ -10,7 +10,7 @@ class WorkTimeSerializer(serializers.ModelSerializer):
     day = serializers.DateField(read_only=True)
 
     last_time_block = ResourceRelatedField(
-        many=True,
+        many=False,
         queryset=WorkTime.objects,
         required=False,
         allow_null=True,
@@ -20,7 +20,7 @@ class WorkTimeSerializer(serializers.ModelSerializer):
     )
 
     next_time_block = ResourceRelatedField(
-        many=True,
+        many=False,
         queryset=WorkTime.objects,
         required=False,
         allow_null=True,

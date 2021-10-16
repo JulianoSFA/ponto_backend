@@ -18,14 +18,19 @@ class WorkTime(TimeBlock):
         return self.end - self.start
 
     def save(self, *args, **kwargs):
+        if not self.end:
+            super(WorkTime, self).save(*args, **kwargs)
+            return
+
         self.day = self.start.date()
         starting_date = self.day
         ending_date = self.end.date()
 
         if starting_date != ending_date:
             start_next_day = datetime.datetime.combine(self.start.date() + datetime.timedelta(days=1), datetime.time.min)
-            new_work_time = WorkTime(start=start_next_day, end=ending_date, day=start_next_day.date())
+            new_work_time = WorkTime(start=start_next_day, end=self.end, day=start_next_day.date())
             self.next_time_block = new_work_time
+            self.end = start_next_day - datetime.timedelta(seconds=1)
             new_work_time.save()
             
         super(WorkTime, self).save(*args, **kwargs)
