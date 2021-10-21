@@ -10,7 +10,7 @@ class WorkTime(TimeBlock):
     end = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        ordering = ['-day', '-start']
+        ordering = ['-id']
 
     @property
     def time_span(self):
@@ -32,5 +32,5 @@ class WorkTime(TimeBlock):
             self.next_time_block = new_work_time
             self.end = start_next_day - datetime.timedelta(seconds=1)
             new_work_time.save()
-            
+
         super(WorkTime, self).save(*args, **kwargs)

@@ -9,16 +9,6 @@ class WorkTimeSerializer(serializers.ModelSerializer):
     end = serializers.DateTimeField(required=False)
     day = serializers.DateField(read_only=True)
 
-    last_time_block = ResourceRelatedField(
-        many=False,
-        queryset=WorkTime.objects,
-        required=False,
-        allow_null=True,
-        related_link_url_kwarg='pk',
-        self_link_view_name='work-time-relationships',
-        related_link_view_name='work-time-related',
-    )
-
     next_time_block = ResourceRelatedField(
         many=False,
         queryset=WorkTime.objects,
