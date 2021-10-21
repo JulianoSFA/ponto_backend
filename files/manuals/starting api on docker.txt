@@ -7,3 +7,5 @@
 
 * Caso esteja usando pycharm (qualquer versão menos a community) pode configurar um debugger, tutorial aqui:
 https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#configuring-docker
+
+!Atenção: Para funcionar o docker desktop necessita que a opção de virtualização esteja habilitada, caso não esteja reinicie o computador e habilite ela na BIOS.
