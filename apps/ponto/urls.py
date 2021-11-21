@@ -1,11 +1,14 @@
 from django.conf.urls import include, url
 from rest_framework.routers import DefaultRouter
+from apps.ponto.models.WorkBreaks import WorkBreaks
+from apps.ponto.views.WorkBreaksViews import WorkBreaksViewSet
 
 from apps.ponto.views.WorkTimeViewSet import WorkTimeViewSet
 
 router = DefaultRouter()
 
 router.register('work-time', WorkTimeViewSet)
+router.register('work-break', WorkBreaksViewSet)
 
 relationshipPatterns = [
     url(
@@ -22,4 +25,5 @@ relationshipPatterns = [
 urlpatterns = [
     url(r'ponto/', include(router.urls)),
     url(r'ponto/', include(relationshipPatterns)),
+
 ]

@@ -1,13 +1,17 @@
 import datetime
 
 from django.db import models
+from django.db.models.fields import BooleanField
 
 from apps.ponto.models.TimeBlock import TimeBlock
+from apps.ponto.models.WorkBreaks import WorkBreaks
+
 
 
 class WorkTime(TimeBlock):
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
+    normal_day = BooleanField(default=True) 
 
     class Meta:
         ordering = ['-id']
@@ -16,7 +20,7 @@ class WorkTime(TimeBlock):
     def time_span(self):
         if not self.end: return 0
         return self.end - self.start
-
+    
     def save(self, *args, **kwargs):
         if not self.end:
             super(WorkTime, self).save(*args, **kwargs)
@@ -34,3 +38,14 @@ class WorkTime(TimeBlock):
             new_work_time.save()
 
         super(WorkTime, self).save(*args, **kwargs)
+    
+    #Verifica se é Dia Normal
+    #@property
+    #def check_if_workbreak(self):
+    #    if self.WorkBreaks.objects.filter(date__contains=self.day):
+    #        return False
+
+
+
+    
+
