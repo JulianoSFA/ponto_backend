@@ -7,7 +7,6 @@ from apps.ponto.models.TimeBlock import TimeBlock
 from apps.ponto.models.WorkBreaks import WorkBreaks
 
 
-
 class WorkTime(TimeBlock):
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
@@ -39,11 +38,14 @@ class WorkTime(TimeBlock):
 
         super(WorkTime, self).save(*args, **kwargs)
     
-    #Verifica se é Dia Normal
-    #@property
-    #def check_if_workbreak(self):
-    #    if self.WorkBreaks.objects.filter(date__contains=self.day):
-    #        return False
+    #Deverá ser chamado durante a View, ou calculo de horas.
+    @property
+    def check_if_workbreak(self):
+        if WorkBreaks.objects.filter(date__contains=self.day):
+            return False
+    
+
+
 
 
 

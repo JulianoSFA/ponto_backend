@@ -9,15 +9,11 @@ class WorkBreaks(models.Model):
         ("FE", "Ferias"),
     )
 
-    AFFECTED_WORKERS = (
-        ("All"),
-        User.objects.all(User.short_name()) #Não tenho certeza se vai listar todos a ideia seria fazer uma lista supensa
-    )
 
-    kind = models.CharField(max_lenght=3, choices=KIND_OF_BREAK, blank=False, null=False)
-    name = models.CharField(max_lenght=60)
+    kind = models.CharField(max_length=3, choices=KIND_OF_BREAK, blank=False, null=False)
+    name = models.CharField(max_length=60)
     date = models.DateField()
-    affecteds_workers =  models.CharField(maxlenght=255, choices=AFFECTED_WORKERS, blank=False, null=False) 
+    affecteds_workers =  models.CharField(max_length=11, default="Todos", blank=False, null=False) #gostaria de fazer em forma de lista supensa, mas nçao sei como
 
     def __str__(self):
         return self.name
