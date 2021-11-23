@@ -42,7 +42,8 @@ class WorkTime(TimeBlock):
     @property
     def check_if_workbreak(self):
         if WorkBreaks.objects.filter(date__contains=self.day):
-            return False
+            if WorkBreaks.objects.filter(affected_workers__contains=self.user):
+                return False
     
 
 
