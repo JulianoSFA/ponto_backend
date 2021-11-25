@@ -2,8 +2,10 @@ from django_filters.rest_framework import FilterSet
 from rest_framework.permissions import AllowAny
 from rest_framework_json_api.views import ModelViewSet, RelationshipView
 
+from apps.ponto.models.WorkBreaks import WorkBreaks
 from apps.ponto.models.WorkTime import WorkTime
 from apps.ponto.serializers.WorkTimeSerializer import WorkTimeSerializer
+from apps.ponto.models.TimeBlock import TimeBlock
 
 
 class WorkTimeFilter(FilterSet):

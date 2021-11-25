@@ -19,10 +19,8 @@ class User(AbstractUser):
     dob = models.DateField(default=None, blank=True, null=True)
 
     #DADOS FUNCIONAIS
-    function = models.CharField(max_length=60, default=None) 
-    montlhy_working_hours = models.SmallIntegerField()
-    daily_working_hours = models.DecimalField(max_digits=4, decimal_places=2)
-
+    function = models.CharField(max_length=60, default=None)
+    dias_trabalhados = models.JSONField()
 
     is_email_verified = models.BooleanField(default=False, blank=True)
     is_active = models.BooleanField(default=True, blank=True)

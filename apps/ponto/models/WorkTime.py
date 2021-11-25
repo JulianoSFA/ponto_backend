@@ -1,16 +1,13 @@
 import datetime
 
 from django.db import models
-from django.db.models.fields import BooleanField
 
 from apps.ponto.models.TimeBlock import TimeBlock
-from apps.ponto.models.WorkBreaks import WorkBreaks
 
 
 class WorkTime(TimeBlock):
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
-    normal_day = BooleanField(default=True) 
 
     class Meta:
         ordering = ['-id']
@@ -37,18 +34,3 @@ class WorkTime(TimeBlock):
             new_work_time.save()
 
         super(WorkTime, self).save(*args, **kwargs)
-    
-    #Deverá ser chamado durante a View, ou calculo de horas.
-    @property
-    def check_if_workbreak(self):
-        if WorkBreaks.objects.filter(date__contains=self.day):
-            if WorkBreaks.objects.filter(affected_workers__contains=self.user):
-                return False
-    
-
-
-
-
-
-    
-
